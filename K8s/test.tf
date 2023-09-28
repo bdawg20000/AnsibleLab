@@ -1,4 +1,3 @@
-<> cat test/test.tf
 ## Configure the vSphere Provider
 provider "vsphere" {
     vsphere_server = "${var.vsphere_server}"
