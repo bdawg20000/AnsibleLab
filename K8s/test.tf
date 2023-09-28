@@ -18,7 +18,7 @@ data "vsphere_datastore" "datastore" {
 
 data "vsphere_resource_pool" "pool" {}
 
-data "vsphere_network" "VM Network" {
+data "vsphere_network" "VMNetwork" {
   name          = "VM Network"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
@@ -34,13 +34,13 @@ resource "vsphere_virtual_machine" "test1" {
   guest_id = "centos7_64Guest"
   nested_hv_enabled =true
   network_interface {
-   network_id     = "${data.vsphere_network.mgmt_lan.id}"
+   network_id     = "${data.vsphere_network.VMNetwork.id}"
    adapter_type   = "vmxnet3"
   }
 
   disk {
    size             = 120
-   name             = "test.vmdk"
+   label            = "test1.vmdk"
    eagerly_scrub    = false
    thin_provisioned = true
   }
